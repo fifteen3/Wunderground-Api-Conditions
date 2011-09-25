@@ -1,0 +1,73 @@
+{
+	"response": {
+		"version": "0.1"
+		,"termsofService": "http://www.wunderground.com/weather/api/d/terms.html"
+		,"features": {
+			"conditions": 1
+			}
+		}
+		,"current_observation": {
+		"image": {
+			"url":"http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
+			"title":"Weather Underground",
+			"link":"http://wunderground.com"
+		},
+		"display_location": {
+			"full":"St. Catharines, Ontario",
+			"city":"St. Catharines",
+			"state":"ON",
+			"state_name":"Ontario",
+			"country":"CA",
+			"country_iso3166":"CA",
+			"zip":"00000",
+			"latitude":"43.20000076",
+			"longitude":"-79.16999817",
+			"elevation":"98.00000000"
+		},
+		"observation_location": {
+			"full":"St. Catharines, ",
+			"city":"St. Catharines",
+			"state":"",
+			"country":"CA",
+			"country_iso3166":"CA",
+			"latitude":"43.20000076",
+			"longitude":"-79.16999817",
+			"elevation":"322 ft"
+		},
+		"station_id":"CYSN",
+		"observation_time":"Last Updated on September 24, 4:00 PM EDT",
+		"observation_time_rfc822":"Sat, 24 Sep 2011 16:00:00 -0400",
+		"observation_epoch":"1316894400",
+		"local_time_rfc822":"Sat, 24 Sep 2011 16:12:44 -0400",
+		"local_epoch":"1316895164",
+		"weather":"Mostly Cloudy",
+		"temperature_string":"66 F (19 C)",
+		"temp_f":66,
+		"temp_c":19,
+		"relative_humidity":"78%",
+		"wind_string":"From the NNE at 7 MPH",
+		"wind_dir":"NNE",
+		"wind_degrees":20,
+		"wind_mph":7,
+		"wind_gust_mph":0,
+		"pressure_mb":"1018",
+		"pressure_in":"30.07",
+		"pressure_trend":"-",
+		"dewpoint_string":"59 F (15 C)",
+		"dewpoint_f":59,
+		"dewpoint_c":15,
+		"heat_index_string":"NA",
+		"heat_index_f":"NA",
+		"heat_index_c":"NA",
+		"windchill_string":"NA",
+		"windchill_f":"NA",
+		"windchill_c":"NA",
+		"visibility_mi":"15.0",
+		"visibility_km":"24.1",
+		"icon":"mostlycloudy",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/mostlycloudy.gif",
+		"forecast_url":"http://www.wunderground.com/global/stations/71262.html",
+		"history_url":"http://www.wunderground.com/history/airport/CYSN/2011/9/24/DailyHistory.html",
+		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=43.20000076,-79.16999817"
+	}
+}
