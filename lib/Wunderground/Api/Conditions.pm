@@ -14,44 +14,45 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+has 'version' => ( is => 'ro', default => '0.01');
 has 'key' => ( is => 'ro', lazy_build => 1, required => 1, isa => 'Str' );
 has 'location' => ( is => 'rw', isa => 'Str');
 has 'ua' => ( is => 'ro', default => sub {  LWP::UserAgent->new(); });
 has 'json_handler' => ( is => 'ro', default => sub {  JSON::PP->new(); });
+has 'http_endpoint' => ( is => 'ro', default => 'http://api.wunderground.com/api/');
 
 =head1 SYNOPSIS
 
-
-Perhaps a little code snippet.
-
     use Wunderground::Api::Conditions;
 	my $conifg = {
-				   key => '', 
+				   key => 'Your API Key',
 				   location => 'San Francisco, CA',
 				   ua => LWP::UserAgent->new,
 				   json_handler => JSON::XS->new
 				 };
-    my $conditions = Wunderground::Api::Conditions->new($config);
-
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+    my $weather_report = Wunderground::Api::Conditions->new($config);
+	my $current_conditions = $weather_report->current_conditions();
+	$current_conditions->{"temp_f"};
 
 =head1 SUBROUTINES/METHODS
 
 =head2 current_conditions
-
+	Get the conditions for a given time period. If no time period is specificed, the current conditions will be returned.
+	If a location has not been configured for the object, no results will be returned and an exception will be thrown indicating
+	that a location has not been set.
 =cut
 
 sub current_conditions {
 		my ($self) = @_;
-		my $res = $self->ua->get("http://api.wunderground.com/api/" . $self->key . "/conditions/q/" . $self->location . ".json");
+
+		die( "A Location or API key has not been set for the current request." ) unless ($self->key && $self->location);
+
+		my $res = $self->ua->get( $self->http_endpoint . $self->key . "/conditions/q/" . $self->location . ".json" );
+		if (!$res->is_success) {
+			return undef;
+		}
 
 		return $self->json_handler->decode($res->decoded_content)->{'current_observation'};
-
 }
 
 =head1 AUTHOR
