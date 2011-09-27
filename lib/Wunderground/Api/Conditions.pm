@@ -35,6 +35,76 @@ has 'http_endpoint' =>
     my $current_conditions = $weather_report->current_conditions();
     $current_conditions->{"temp_f"};
 
+	Only the current_observation values are returned from the API request to the Weather Underground API.
+	The JSON is converted in to a hash and returned. Below is a skeleton of the hash.
+
+	The api.wunderground.com documentation explains each key.
+	L<http://www.wunderground.com/weather/api/d/documentation.html#fields>
+	{
+		"image" => {
+			"url"=>"",
+			"title"=>"",
+			"link"=>""
+		},
+		"display_location" => {
+			"full": "",
+			"city"=>"",
+			"state"=>"",
+			"state_name"=>"",
+			"country"=>"",
+			"country_iso3166"=>"",
+			"zip"=>"",
+			"latitude"=>"",
+			"longitude"=>"",
+			"elevation"=>""
+		},
+		"observation_location" => {
+			"full"=>"",
+			"city"=>"",
+			"state"=>"",
+			"country"=>"",
+			"country_iso3166"=>"",
+			"latitude"=>"",
+			"longitude"=>"",
+			"elevation"=>""
+		},
+		"station_id"=>"",
+		"observation_time"=>"",
+		"observation_time_rfc822"=>"",
+		"observation_epoch"=>"",
+		"local_time_rfc822"=>"",
+		"local_epoch"=>"",
+		"weather"=>"",
+		"temperature_string"=>"",
+		"temp_f":0,
+		"temp_c":0,
+		"relative_humidity"=>"",
+		"wind_string"=>"",
+		"wind_dir"=>"",
+		"wind_degrees":0,
+		"wind_mph":0,
+		"wind_gust_mph":0,
+		"pressure_mb"=>"",
+		"pressure_in"=>"",
+		"pressure_trend"=>"",
+		"dewpoint_string"=>"",
+		"dewpoint_f":0,
+		"dewpoint_c":0,
+		"heat_index_string"=>"",
+		"heat_index_f"=>"",
+		"heat_index_c"=>"",
+		"windchill_string"=>"",
+		"windchill_f"=>"",
+		"windchill_c"=>"",
+		"visibility_mi"=>"",
+		"visibility_km"=>"",
+		"icon"=>"",
+		"icon_url"=>"",
+		"forecast_url"=>"",
+		"history_url"=>"",
+		"ob_url"=>""
+	}
+
 =head1 SUBROUTINES/METHODS
 
 =head2 current_conditions
