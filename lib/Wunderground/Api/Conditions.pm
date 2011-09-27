@@ -24,35 +24,35 @@ has 'http_endpoint' => ( is => 'ro', default => 'http://api.wunderground.com/api
 =head1 SYNOPSIS
 
     use Wunderground::Api::Conditions;
-	my $conifg = {
-				   key => 'Your API Key',
-				   location => 'San Francisco, CA',
-				   ua => LWP::UserAgent->new,
-				   json_handler => JSON::XS->new
-				 };
+    my $conifg = {
+                   key => 'Your API Key',
+                   location => 'San Francisco, CA',
+                   ua => LWP::UserAgent->new,
+                   json_handler => JSON::XS->new
+                 };
     my $weather_report = Wunderground::Api::Conditions->new($config);
-	my $current_conditions = $weather_report->current_conditions();
-	$current_conditions->{"temp_f"};
+    my $current_conditions = $weather_report->current_conditions();
+    $current_conditions->{"temp_f"};
 
 =head1 SUBROUTINES/METHODS
 
 =head2 current_conditions
-	Get the conditions for a given time period. If no time period is specificed, the current conditions will be returned.
-	If a location has not been configured for the object, no results will be returned and an exception will be thrown indicating
-	that a location has not been set.
+    Get the conditions for a given time period. If no time period is specificed, the current conditions will be returned.
+    If a location has not been configured for the object, no results will be returned and an exception will be thrown indicating
+    that a location has not been set.
 =cut
 
 sub current_conditions {
-		my ($self) = @_;
+        my ($self) = @_;
 
-		die( "A Location or API key has not been set for the current request." ) unless ($self->key && $self->location);
+        die( "A Location or API key has not been set for the current request." ) unless ($self->key && $self->location);
 
-		my $res = $self->ua->get( $self->http_endpoint . $self->key . "/conditions/q/" . $self->location . ".json" );
-		if (!$res->is_success) {
-			return;
-		}
+        my $res = $self->ua->get( $self->http_endpoint . $self->key . "/conditions/q/" . $self->location . ".json" );
+        if (!$res->is_success) {
+            return;
+        }
 
-		return $self->json_handler->decode( $res->decoded_content )->{'current_observation'};
+        return $self->json_handler->decode( $res->decoded_content )->{'current_observation'};
 }
 
 =head1 AUTHOR
