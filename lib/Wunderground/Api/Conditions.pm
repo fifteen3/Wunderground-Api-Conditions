@@ -14,12 +14,12 @@ Version 0.01
 
 =cut
 
-has 'version' => ( is => 'ro', default => '0.01');
+has 'version' => ( is => 'ro', default => '0.01' );
 has 'key' => ( is => 'ro', lazy_build => 1, required => 1, isa => 'Str' );
-has 'location' => ( is => 'rw', isa => 'Str');
-has 'ua' => ( is => 'ro', default => sub {  LWP::UserAgent->new(); });
-has 'json_handler' => ( is => 'ro', default => sub {  JSON::PP->new(); });
-has 'http_endpoint' => ( is => 'ro', default => 'http://api.wunderground.com/api/');
+has 'location' => ( is => 'rw', isa => 'Str' );
+has 'ua' => ( is => 'ro', default => sub {  LWP::UserAgent->new(); } );
+has 'json_handler' => ( is => 'ro', default => sub {  JSON::PP->new(); } );
+has 'http_endpoint' => ( is => 'ro', default => 'http://api.wunderground.com/api/' );
 
 =head1 SYNOPSIS
 
@@ -49,10 +49,10 @@ sub current_conditions {
 
 		my $res = $self->ua->get( $self->http_endpoint . $self->key . "/conditions/q/" . $self->location . ".json" );
 		if (!$res->is_success) {
-			return undef;
+			return;
 		}
 
-		return $self->json_handler->decode($res->decoded_content)->{'current_observation'};
+		return $self->json_handler->decode( $res->decoded_content )->{'current_observation'};
 }
 
 =head1 AUTHOR
